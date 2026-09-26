@@ -5,9 +5,9 @@ def create_zip():
     root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     zip_path = os.path.join(root_dir, "Traffic_Congestion_Prediction_Project.zip")
 
-    # Directories and files to exclude
+    # Directories and files to exclude (only virtual environments, build artifacts, git internals, and the zip itself)
     exclude_dirs = {'.git', '.venv', 'venv', 'node_modules', '__pycache__', '.cache', 'dist'}
-    exclude_files = {'Traffic_Congestion_Prediction_Project.zip', 'Metro_Interstate_Traffic_Volume.csv'}
+    exclude_files = {'Traffic_Congestion_Prediction_Project.zip'}
 
     if os.path.exists(zip_path):
         os.remove(zip_path)
