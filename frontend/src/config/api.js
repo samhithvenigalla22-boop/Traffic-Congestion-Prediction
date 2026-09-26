@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001';
+const rawApiUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001').trim();
+const API_BASE_URL = rawApiUrl.replace(/\/+$/, '').replace(/\/health\/?$/, '');
 
 export function getAuthHeaders() {
   const token = localStorage.getItem('traffic_jwt_token');

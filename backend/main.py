@@ -25,14 +25,32 @@ app = FastAPI(
 )
 
 # Configure CORS
-origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:8001,http://127.0.0.1:8001").split(",")
+default_origins = [
+    "https://traffic-congestion-prediction-gilt.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:8001",
+    "http://127.0.0.1:8001",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+if cors_origins_env:
+    for origin in cors_origins_env.split(","):
+        cleaned = origin.strip().rstrip("/")
+        if cleaned and cleaned not in default_origins:
+            default_origins.append(cleaned)
+
+origins = list(dict.fromkeys(default_origins))
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
+    allow_origin_regex=r"^https:\/\/([a-zA-Z0-9-]+\.)?vercel\.app$",
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "Accept", "Origin", "X-Requested-With", "*"],
 )
 
 # Load trained XGBoost model and preprocessing artifacts
