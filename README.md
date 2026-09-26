@@ -1,58 +1,91 @@
 # 🚦 AI Road Traffic Congestion Prediction & Volume Forecasting
-### High-Performance In-Browser ML Architecture & XGBoost Regressor Pipeline
+### Full-Stack Machine Learning Architecture: FastAPI, SQLite, React & XGBoost Regressor Pipeline
 
-An advanced end-to-end Machine Learning web application forecasting highway traffic volume and classifying congestion conditions along Interstate 94 (Minneapolis–St. Paul). The system features an **XGBoost Regressor ($R^2 = 0.95$)** trained through a rigorous chronological time-series pipeline, coupled with a **standalone, zero-backend React dashboard** that evaluates tree ensembles directly in the browser with sub-millisecond latency.
+An advanced end-to-end Machine Learning web application forecasting highway traffic volume and classifying congestion conditions along Interstate 94 (Minneapolis–St. Paul). The system features a **production-grade FastAPI backend**, an **XGBoost Regressor ($R^2 = 0.95$)** trained through a rigorous chronological time-series pipeline, a **SQLite relational database** with **JWT authentication**, and a **high-performance React dashboard** equipped with **dual-mode inference** (FastAPI REST API + in-browser edge fallback).
 
 ---
 
-## 1. System Architecture: Zero-Backend Client ML
+## 1. System Architecture: Full-Stack Hybrid ML Architecture
+
+The application implements a resilient, production-ready hybrid architecture:
+1. **FastAPI Python Backend (Primary):** Serves real-time inference via the trained XGBoost model (`joblib`), handles user authentication (JWT + bcrypt), and persists prediction history in a SQLite database via SQLAlchemy ORM.
+2. **Interactive React Frontend:** Smart city transit command center UI featuring interactive feature inputs, real-time capacity gauges, What-If scenario simulations, and visual analytics.
+3. **Edge Resilience & Client Fallback:** If the backend is temporarily offline or in disconnected environments, the frontend automatically falls back to an embedded native JavaScript XGBoost decision-tree engine (`frontend/src/ml/prediction.js`), guaranteeing 100% uptime with sub-millisecond latency.
 
 ```
-                                    USER BROWSER / CLIENT
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                             │
-│  ┌─────────────────────────┐          ┌──────────────────────────┐                          │
-│  │   Interactive Inputs    │          │  Live Meteorological     │                          │
-│  │  - Auto Date/Time       │          │  - Geolocation API       │                          │
-│  │  - Weather Overrides    │          │  - Open-Meteo REST API   │                          │
-│  └────────────┬────────────┘          └────────────┬─────────────┘                          │
-│               │                                    │                                        │
-│               └──────────────────┬─────────────────┘                                        │
-│                                  │                                                          │
-│                                  ▼                                                          │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │                     In-Browser Feature Engineering Engine                             │  │
-│  │  - Cyclical Harmonic Encodings: sin/cos(hour, day_of_week, month)                    │  │
-│  │  - Calendar Flags: is_rush_hour, is_weekend, is_holiday                               │  │
-│  │  - StandardScaler Z-Score Normalization (Precomputed Means & Variances)               │  │
-│  │  - One-Hot Categorical Mapping (Precomputed Categories)                               │  │
-│  └───────────────────────────────────────┬───────────────────────────────────────────────┘  │
-│                                          │                                                  │
-│                                          ▼                                                  │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │              Native JavaScript XGBoost Decision Tree Traversal Engine                 │  │
-│  │  - 200 Gradient-Boosted Decision Trees executed sequentially                          │  │
-│  │  - IEEE 754 float32 single-precision matching (Math.fround)                           │  │
-│  │  - Prediction Parity: Delta < 0.003 veh/hr vs Python XGBoost C++                      │  │
-│  │  - Inference Latency: < 0.5 ms (Zero HTTP requests, Zero server cold starts)          │  │
-│  └───────────────────────────────────────┬───────────────────────────────────────────────┘  │
-│                                          │                                                  │
-│                                          ▼                                                  │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │                          Empirical Congestion Classifier                              │  │
-│  │  - LOW: < 2,154 veh/hr | MODERATE: 2,154 - 4,555 veh/hr | HIGH: > 4,555 veh/hr        │  │
-│  └───────────────────────────────────────┬───────────────────────────────────────────────┘  │
-│                                          │                                                  │
-│                                          ▼                                                  │
-│  ┌───────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │                     Modern Smart City Transit Command UI                              │  │
-│  │  - Real-time Capacity Gauge (0 - 7,500 veh/hr)                                        │  │
-│  │  - Interactive What-If Scenario Simulator with Live Delta Calculations                │  │
-│  │  - LocalStorage Prediction History & CSV Export                                       │  │
-│  │  - Model Architecture & Feature Importance Insights                                   │  │
-│  └───────────────────────────────────────────────────────────────────────────────────────┘  │
-│                                                                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     CLIENT / REACT FRONTEND                                      │
+│                                                                                                  │
+│  ┌─────────────────────────┐          ┌──────────────────────────┐          ┌─────────────────┐  │
+│  │   Interactive Inputs    │          │  Live Meteorological     │          │  JWT User Auth  │  │
+│  │  - Date & Time Picker   │          │  - Geolocation API       │          │  - Login/Signup │  │
+│  │  - Weather Overrides    │          │  - Open-Meteo REST API   │          │  - Auth Context │  │
+│  │  - Corridor & Direction │          └────────────┬─────────────┘          └────────┬────────┘  │
+│  └────────────┬────────────┘                       │                                 │           │
+│               │                                    │                                 │           │
+│               └──────────────────┬─────────────────┘                                 │           │
+│                                  │                                                   │           │
+│                                  ▼                                                   │           │
+│                    ┌───────────────────────────┐                                     │           │
+│                    │     api.predict(payload)  │ ◄───────────────────────────────────┘           │
+│                    └─────────────┬─────────────┘                                                 │
+└──────────────────────────────────┼───────────────────────────────────────────────────────────────┘
+                                   │
+              HTTP POST /predict   │  (Bearer JWT Token + JSON Payload)
+                                   ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   BACKEND / FASTAPI (PORT 8001)                                  │
+│                                                                                                  │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────┐  │
+│  │                               FastAPI Application Layer (main.py)                          │  │
+│  │  - CORS Middleware: Localhost (5173, 3000) & Vercel Production Domains                     │  │
+│  │  - Interactive API Documentation: Swagger UI (/docs) & ReDoc (/redoc)                     │  │
+│  │  - Endpoints: /health, /auth/signup, /auth/login, /auth/me, /predict, /history            │  │
+│  └───────────────────────────────┬────────────────────────────────────────────────────────────┘  │
+│                                  │                                                               │
+│         ┌────────────────────────┴────────────────────────┬────────────────────────┐             │
+│         ▼                                                 ▼                        ▼             │
+│  ┌──────────────────────────────┐              ┌─────────────────────┐   ┌────────────────────┐  │
+│  │   Authentication & Security  │              │ Feature Engineering │   │   Database Layer   │  │
+│  │  - bcrypt password hashing   │              │  - Cyclical Sin/Cos │   │  - SQLite Engine   │  │
+│  │  - PyJWT access tokens       │              │  - Rush Hour Flags  │   │  - SQLAlchemy ORM  │  │
+│  │  - OAuth2 Bearer security    │              │  - Temp K Converter │   │  - Users Table     │  │
+│  └──────────────────────────────┘              └──────────┬──────────┘   │  - Predictions Log │  │
+│                                                           │              └────────────────────┘  │
+│                                                           ▼                                      │
+│                                                ┌─────────────────────┐                           │
+│                                                │ ColumnTransformer   │                           │
+│                                                │ preprocessing.joblib│                           │
+│                                                └──────────┬──────────┘                           │
+│                                                           │                                      │
+│                                                           ▼                                      │
+│                                                ┌─────────────────────┐                           │
+│                                                │  XGBoost Regressor  │                           │
+│                                                │  best_model.joblib  │                           │
+│                                                │  (R² = 0.95, C++)   │                           │
+│                                                └──────────┬──────────┘                           │
+│                                                           │                                      │
+│                                                           ▼                                      │
+│                                                ┌─────────────────────┐                           │
+│                                                │ Empirical Tercile   │                           │
+│                                                │ Congestion Level    │                           │
+│                                                │ LOW | MOD | HIGH    │                           │
+│                                                └──────────┬──────────┘                           │
+│                                                           │                                      │
+│         ┌─────────────────────────────────────────────────┴──────────────────────────────────────┘
+│         │ JSON Response: { predicted_traffic, congestion_level, r2, mae, rmse, id, ... }
+▼         ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 EDGE RESILIENCE & OFFLINE FALLBACK                               │
+│                                                                                                  │
+│  If backend is unreachable or offline, frontend automatically activates:                         │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────────┐  │
+│  │            Embedded In-Browser XGBoost Traversal Engine (prediction.js)                    │  │
+│  │  - 200 Gradient-Boosted Trees compiled to JSON (modelData.json)                            │  │
+│  │  - IEEE 754 float32 precision matching (Math.fround)                                       │  │
+│  │  - Zero network round-trip, < 0.5 ms inference latency, LocalStorage history fallback     │  │
+│  └────────────────────────────────────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -153,31 +186,82 @@ The complete research and engineering pipeline is preserved in:
 ## 6. How to Run the Project
 
 ### Prerequisites
-- **Node.js 18+** & **npm** (for the frontend application)
-- **Python 3.10+** (for training notebook and verification scripts)
+- **Python 3.10+** (for FastAPI backend and ML pipeline)
+- **Node.js 18+** & **npm** (for the React frontend)
 
 ---
 
-### Step 1: Launch the Interactive Frontend Dashboard
-No backend server required. Run Vite directly:
+### Step 1: Start the FastAPI Backend Server
+The backend handles authentication, SQLite persistence, and server-side XGBoost predictions.
+
 ```bash
+# Navigate to the backend directory
+cd backend
+
+# Create and activate a Python virtual environment (if not already created)
+python -m venv venv
+
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+# source venv/bin/activate
+
+# Install backend dependencies
+pip install -r requirements.txt
+
+# Run the FastAPI server with Uvicorn on port 8001
+uvicorn main:app --reload --port 8001
+```
+
+- **API Base URL:** `http://localhost:8001`
+- **Interactive Swagger Docs (OpenAPI):** `http://localhost:8001/docs`
+- **ReDoc Documentation:** `http://localhost:8001/redoc`
+- **Health Check Endpoint:** `http://localhost:8001/health`
+
+#### Available Backend Endpoints:
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/health` | Server health, model status, and database type | No |
+| `POST` | `/auth/signup` | Register new user account (name, email, password, phone) | No |
+| `POST` | `/auth/login` | Authenticate and obtain JWT access token | No |
+| `GET` | `/auth/me` | Fetch authenticated user profile details | Yes (Bearer JWT) |
+| `POST` | `/predict` | Run XGBoost inference on input features and record history | Optional |
+| `GET` | `/history` | Retrieve user's past 100 predictions | Yes (Bearer JWT) |
+| `DELETE` | `/history` | Clear prediction history for current user | Yes (Bearer JWT) |
+
+---
+
+### Step 2: Start the Interactive React Frontend
+In a new terminal window, start the React application:
+
+```bash
+# Navigate to the frontend directory
 cd frontend
+
+# Install frontend dependencies
 npm install
+
+# Run the Vite development server
 npm run dev
 ```
+
 Open **[http://localhost:5173](http://localhost:5173)** in your browser.
 
 #### Features Available in the Dashboard:
+- 🔐 **User Authentication:** Complete Sign Up, Sign In, and persistent session management powered by JWT and SQLite.
 - 🕒 **Automatic Date & Time:** Browser local time defaults with manual override controls.
-- 📍 **Use My Location:** Browser Geolocation + Open-Meteo REST API for live weather.
-- ⚡ **Instant Predictions:** Sub-millisecond client-side XGBoost tree traversal.
-- 🎯 **What-If Studio:** Test weather and schedule shifts with interactive presets (Blizzard, Downpour, Peak Rush, Night).
-- 📜 **Prediction History:** LocalStorage session tracking with one-click CSV export.
-- 🔍 **Architecture Modal:** Inspect live model specifications, $R^2$ explanation, and feature importances.
+- 📍 **Live Location & Weather:** Browser Geolocation + Open-Meteo REST API integration for real-time weather parameters.
+- ⚡ **Dual-Mode ML Inference:** Communicates with the FastAPI backend for authenticated, server-side inference, with automatic seamless in-browser fallback.
+- 🎯 **What-If Scenario Studio:** Counterfactual analysis to simulate blizzards, downpours, peak rush hour surges, and late-night conditions.
+- 📊 **Dynamic Visual Analytics:** SVG capacity gauge (0 - 7,500 veh/hr), diurnal commuter curve charts, and feature importance breakdowns.
+- 📜 **Prediction History & Export:** Real-time synchronized history with CSV download capability.
+- 🔍 **Architecture & Model Specs Modal:** Live inspection of XGBoost parameters, $R^2$ variance explanation, and mathematical formulations.
 
 ---
 
-### Step 2: Open and Run the Jupyter ML Notebook
+### Step 3: Open and Run the Jupyter ML Notebook (Optional)
+To retrain the model or reproduce all 29 research sections:
+
 ```bash
 # Launch interactive Jupyter environment
 jupyter notebook notebooks/traffic_prediction_training.ipynb
@@ -189,8 +273,8 @@ python scripts/run_notebook.py
 
 ---
 
-### Step 3: Run Model Verification
-Verify model artifacts and prediction parity:
+### Step 4: Run Model Verification
+Verify model artifacts, test set performance, and prediction parity:
 ```bash
 python scripts/verify_ml.py
 ```
@@ -202,12 +286,26 @@ python scripts/verify_ml.py
 ```
 Traffic-Congestion-Prediction/
 │
+├── backend/                                  # FastAPI Backend Application
+│   ├── auth.py                               # JWT token creation, verification & bcrypt hashing
+│   ├── database.py                           # SQLAlchemy engine, session maker & SQLite connection
+│   ├── main.py                               # FastAPI app, CORS, routes & XGBoost inference handler
+│   ├── models.py                             # SQLAlchemy ORM models (User, Prediction)
+│   ├── schemas.py                            # Pydantic v2 validation models & request/response schemas
+│   ├── requirements.txt                      # Backend Python dependencies (FastAPI, PyJWT, XGBoost, etc.)
+│   ├── traffic_app.db                        # SQLite database file storing users & prediction logs
+│   ├── .env                                  # Environment variables (SECRET_KEY, CORS_ORIGINS, DB_URL)
+│   └── models/                               # Backend model artifacts directory (symlinked/mirrored)
+│       ├── best_model.joblib
+│       ├── preprocessing.joblib
+│       └── model_metadata.json
+│
 ├── data/
 │   ├── traffic.csv                           # Standardized primary dataset (48,204 rows)
 │   └── Metro_Interstate_Traffic_Volume.csv   # Original source reference
 │
 ├── models/
-│   ├── best_model.joblib                     # Serialized XGBoost Regressor
+│   ├── best_model.joblib                     # Serialized XGBoost Regressor (C++ engine)
 │   ├── preprocessing.joblib                  # Serialized ColumnTransformer pipeline
 │   └── model_metadata.json                   # Model specifications, metrics & terciles
 │
@@ -219,24 +317,32 @@ Traffic-Congestion-Prediction/
 │   ├── run_notebook.py                       # Executes notebook with cell-by-cell validation
 │   ├── export_model_to_frontend.py           # Exports trees & preprocessing to client JSON
 │   ├── train.py                              # Python CLI model training script
-│   └── verify_ml.py                          # Zero-backend pipeline verification script
+│   └── verify_ml.py                          # Full-pipeline model verification script
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Header.jsx                    # Navigation, system status, and modal trigger
+│   │   │   ├── Header.jsx                    # Navigation, system status, auth state & modal triggers
+│   │   │   ├── Login.jsx                     # JWT Login modal/card component
+│   │   │   ├── Signup.jsx                    # User registration modal/card component
 │   │   │   ├── TrafficForm.jsx               # Feature inputs, live weather & presets
 │   │   │   ├── PredictionResult.jsx          # Volume display, badge, metrics breakdown
 │   │   │   ├── TrafficGauge.jsx              # SVG semi-circular capacity gauge (0-7,500)
 │   │   │   ├── ScenarioSimulator.jsx         # What-If studio with real-time delta
 │   │   │   ├── AnalyticsDashboard.jsx        # Chart.js diurnal curves & feature importance
-│   │   │   ├── ModelPerformance.jsx          # Single model card with R² explanation
-│   │   │   ├── PredictionHistory.jsx         # LocalStorage history table with CSV export
+│   │   │   ├── ModelPerformance.jsx          # Model scorecard with R² explanation
+│   │   │   ├── PredictionHistory.jsx         # Synchronized history table with CSV export
 │   │   │   ├── ModelInfoModal.jsx            # Deep-dive architecture & metrics dialog
-│   │   │   └── HeroNetworkVisual.jsx         # Futuristic transit grid visualization
+│   │   │   ├── HeroNetworkVisual.jsx         # Futuristic transit grid visualization
+│   │   │   ├── LocationSelector.jsx          # Corridor & prediction point selection
+│   │   │   └── ThemeSelector.jsx             # Visual theme switcher
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx               # React Auth Context for JWT session state
+│   │   ├── config/
+│   │   │   └── api.js                        # Unified Axios/Fetch API client with auth headers
 │   │   ├── ml/
 │   │   │   ├── modelData.json                # Exported 200 XGBoost trees & scaler parameters
-│   │   │   ├── prediction.js                 # In-browser float32 tree traversal engine
+│   │   │   ├── prediction.js                 # In-browser float32 tree traversal engine (fallback)
 │   │   │   └── modelAdapter.js               # Unified async client ML prediction adapter
 │   │   ├── services/
 │   │   │   └── weather.js                    # Browser geolocation + Open-Meteo REST API
@@ -246,7 +352,7 @@ Traffic-Congestion-Prediction/
 │   ├── package.json                          # React, Vite, Tailwind, Chart.js, Lucide
 │   └── vite.config.js
 │
-├── requirements.txt                          # Python dependencies for ML & notebook
+├── requirements.txt                          # Python dependencies for ML pipeline & notebook
 ├── DATASET_ANALYSIS.md                       # Comprehensive dataset audit
 └── README.md                                 # Full system documentation
 ```
