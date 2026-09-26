@@ -1,0 +1,2558 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontend</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/SAMHITH/Desktop/Traffic-Congestion-Prediction/frontend/src/index.css">/* ==========================================================================
+   METRO TRAFFIC INTELLIGENCE PLATFORM — SMART CITY COMMAND CENTER THEME
+   Modern SaaS / Transit Intelligence / Deep Navy Slate & Semantic Palette
+   ========================================================================== */
+
+:root {
+  /* Core Deep Navy & Slate Theme */
+  --bg-main: #090e17;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #152238;
+  --bg-card: rgba(18, 29, 51, 0.75);
+  --bg-card-hover: rgba(24, 38, 66, 0.85);
+  --bg-input: #0c1424;
+  --bg-input-border: #1e293b;
+
+  /* Accent & Transit Primary Colors */
+  --accent-cyan: #38bdf8;
+  --accent-blue: #3b82f6;
+  --accent-indigo: #6366f1;
+  --accent-purple: #a855f7;
+
+  /* Semantic Traffic Status Tokens */
+  --color-low: #10b981;
+  --color-low-bg: rgba(16, 185, 129, 0.12);
+  --color-low-border: rgba(16, 185, 129, 0.35);
+
+  --color-mod: #f59e0b;
+  --color-mod-bg: rgba(245, 158, 11, 0.12);
+  --color-mod-border: rgba(245, 158, 11, 0.35);
+
+  --color-high: #ef4444;
+  --color-high-bg: rgba(239, 68, 68, 0.14);
+  --color-high-border: rgba(239, 68, 68, 0.38);
+
+  /* Typography */
+  --text-white: #ffffff;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: #1e293b;
+  --border-focus: #38bdf8;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+/* Base Reset & Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(168, 85, 247, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Application Wrapper */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 24px 28px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   Header Component
+   ========================================================================== */
+.header-container {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-card);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 14px 28px;
+}
+
+.header-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-emblem-glow {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.25));
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-white);
+  text-transform: uppercase;
+}
+
+.brand-badge-corridor {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-cyan);
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.header-clock-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 4px 14px;
+  border-left: 1px solid var(--border-card);
+  border-right: 1px solid var(--border-card);
+}
+
+.hud-clock-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.clock-tz {
+  font-size: 0.65rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: #1e293b;
+  color: var(--text-secondary);
+}
+
+.clock-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(12, 20, 36, 0.7);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-card);
+}
+
+.nav-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.nav-pill-btn:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-pill-btn.active-nav {
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.model-info-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-low);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.model-info-btn:hover {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--color-low);
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.status-healthy {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--accent-cyan);
+}
+
+.status-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-low);
+  box-shadow: 0 0 10px var(--color-low);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   Shared Cards
+   ========================================================================== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: 0.02em;
+}
+
+.card-description {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Grid Layout for Command Deck */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Hero Network Visual
+   ========================================================================== */
+.hero-network-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(11, 19, 35, 0.95) 100%);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  overflow: hidden;
+}
+
+.network-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.network-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pulsing-radar-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
+.network-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: 0.04em;
+}
+
+.network-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.network-telemetry-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-card);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.telemetry-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+.network-svg-viewport {
+  width: 100%;
+  max-height: 180px;
+  border-radius: var(--radius-md);
+  background: #090e17;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.network-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Traffic Form Component
+   ========================================================================== */
+.mode-tabs-container {
+  display: flex;
+  gap: 8px;
+  background: rgba(12, 20, 36, 0.8);
+  padding: 5px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-card);
+  margin-bottom: 20px;
+}
+
+.mode-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-tab.active-tab {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.live-controls-panel {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.live-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.location-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.loc-icon {
+  color: var(--accent-cyan);
+}
+
+.location-indicator strong {
+  color: var(--text-white);
+}
+
+.live-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.location-btn, .refresh-weather-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.location-btn:hover, .refresh-weather-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.weather-sync-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sync-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge-synced {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-low);
+  font-weight: 600;
+}
+
+.badge-override {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-mod);
+  font-weight: 600;
+}
+
+.revert-live-btn {
+  background: none;
+  border: none;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.presets-container {
+  margin-bottom: 20px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.presets-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-mod);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.preset-btn {
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: #111b2e;
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.preset-btn:hover {
+  background: #1a2a47;
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent-cyan);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.label-with-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.time-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.time-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.pill-auto {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-low);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pill-custom {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-mod);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.time-reset-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-cyan);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.unit-toggle {
+  display: flex;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  border: 1px solid var(--border-card);
+  overflow: hidden;
+}
+
+.toggle-btn {
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.toggle-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  color: var(--accent-cyan);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  border: 1px solid var(--bg-input-border);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.18s ease;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.form-range {
+  width: 100%;
+  accent-color: var(--accent-cyan);
+  margin-top: 6px;
+}
+
+.range-markers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.input-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 18px rgba(3, 105, 161, 0.35);
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  box-shadow: 0 6px 24px rgba(3, 105, 161, 0.5);
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Prediction Result Component & Gauge
+   ========================================================================== */
+.result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result-placeholder-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  text-align: center;
+}
+
+.placeholder-content {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.placeholder-icon-glow {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
+.placeholder-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--text-white);
+}
+
+.placeholder-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.placeholder-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.hint-pill {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #111a2e;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.result-tag-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: 0.03em;
+}
+
+.mode-pill {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.pill-live {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-low);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.pill-scenario {
+  background: rgba(168, 85, 247, 0.12);
+  color: var(--accent-purple);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.result-actions-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-summary-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background: #142036;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.copy-summary-btn:hover {
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.model-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-low);
+}
+
+.result-main-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .result-main-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.traffic-gauge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.gauge-relative-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.gauge-digital-readout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge-readout-percent {
+  font-size: 1.7rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.gauge-readout-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+.gauge-threshold-legend {
+  display: flex;
+  gap: 8px;
+  margin-top: -15px;
+}
+
+.thresh-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.chip-low { color: var(--color-low); background: var(--color-low-bg); }
+.chip-mod { color: var(--color-mod); background: var(--color-mod-bg); }
+.chip-high { color: var(--color-high); background: var(--color-high-bg); }
+
+.thresh-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.dot-low { background: var(--color-low); }
+.dot-mod { background: var(--color-mod); }
+.dot-high { background: var(--color-high); }
+
+.gauge-los-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  width: 100%;
+}
+
+.los-code {
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+}
+
+.los-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.los-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.los-metric {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.volume-hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.volume-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.volume-display {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.volume-number {
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.volume-unit {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.congestion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+.badge-low {
+  background: var(--color-low-bg);
+  border: 1px solid var(--color-low-border);
+  color: var(--color-low);
+}
+
+.badge-moderate {
+  background: var(--color-mod-bg);
+  border: 1px solid var(--color-mod-border);
+  color: var(--color-mod);
+}
+
+.badge-high {
+  background: var(--color-high-bg);
+  border: 1px solid var(--color-high-border);
+  color: var(--color-high);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.congestion-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.commute-telemetry-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.telemetry-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-card);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.telemetry-chip strong {
+  color: var(--text-white);
+}
+
+.recommendation-box {
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid;
+}
+
+.rec-low {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.rec-mod {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.rec-high {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.rec-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rec-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.rec-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+}
+
+.rec-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.impact-factors-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impact-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.impact-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.impact-tag {
+  font-size: 0.74rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.tag-relief {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: var(--color-low);
+}
+
+.tag-surge {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: var(--color-high);
+}
+
+.features-breakdown {
+  border-top: 1px solid var(--border-card);
+  padding-top: 16px;
+}
+
+.breakdown-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.breakdown-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.breakdown-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-card);
+}
+
+.feature-icon {
+  color: var(--accent-cyan);
+}
+
+.feature-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.feature-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tag-rush {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--color-high-bg);
+  color: var(--color-high);
+  margin-left: 4px;
+}
+
+.tag-offpeak {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--color-low-bg);
+  color: var(--color-low);
+  margin-left: 4px;
+}
+
+.tag-weekend {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--accent-purple);
+  margin-left: 4px;
+}
+
+.tag-weekday {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  margin-left: 4px;
+}
+
+.tag-holiday {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--color-mod-bg);
+  color: var(--color-mod);
+}
+
+/* ==========================================================================
+   Scenario Simulator (What-If Studio)
+   ========================================================================== */
+.simulator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.simulator-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.simulator-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simulator-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.simulator-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.simulator-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: #142036;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.simulator-reset-btn:hover {
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stress-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  background: rgba(12, 20, 36, 0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-card);
+}
+
+.stress-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.stress-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: #111b2e;
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.stress-btn:hover:not(:disabled) {
+  background: #1c2b47;
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent-cyan);
+}
+
+.comparison-matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 140px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .comparison-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.matrix-column {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.matrix-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.matrix-col-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.badge-base {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-secondary);
+}
+
+.badge-sim {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+}
+
+.matrix-col-time {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.matrix-stat-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.matrix-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.matrix-unit {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.matrix-level-pill {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.level-low { color: var(--color-low); background: var(--color-low-bg); }
+.level-moderate { color: var(--color-mod); background: var(--color-mod-bg); }
+.level-high { color: var(--color-high); background: var(--color-high-bg); }
+
+.matrix-param-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 10px;
+}
+
+.matrix-param {
+  display: flex;
+  justify-content: space-between;
+}
+
+.matrix-param strong {
+  color: var(--text-white);
+}
+
+.matrix-delta-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delta-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 1px solid;
+  width: 100%;
+}
+
+.delta-increase {
+  background: var(--color-high-bg);
+  border-color: var(--color-high-border);
+  color: var(--color-high);
+}
+
+.delta-decrease {
+  background: var(--color-low-bg);
+  border-color: var(--color-low-border);
+  color: var(--color-low);
+}
+
+.delta-neutral {
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--text-muted);
+}
+
+.delta-number {
+  font-size: 1.25rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.delta-pct {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.delta-caption {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.apply-scenario-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--accent-cyan);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.18s ease;
+}
+
+.apply-scenario-btn:hover {
+  background: rgba(56, 189, 248, 0.25);
+}
+
+.matrix-unsimulated-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 20px;
+}
+
+/* ==========================================================================
+   Analytics Dashboard
+   ========================================================================== */
+.analytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.analytics-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.analytics-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analytics-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.analytics-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.analytics-tabs {
+  display: flex;
+  gap: 6px;
+  background: #0c1424;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-card);
+  flex-wrap: wrap;
+}
+
+.analytics-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.analytics-tab.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.analytics-chart-wrapper {
+  background: #0a0f1d;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.chart-canvas-container {
+  height: 320px;
+  position: relative;
+}
+
+.analytics-footer-summary {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Model Performance Component
+   ========================================================================== */
+.performance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.performance-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.perf-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perf-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.performance-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: 0.02em;
+}
+
+.badge-model-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-low);
+  letter-spacing: 0.05em;
+}
+
+.performance-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.perf-chip-engine {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.perf-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .perf-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.perf-stat-box {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.perf-stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.perf-stat-number {
+  font-size: 2.1rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  line-height: 1.1;
+}
+
+.text-emerald { color: var(--color-low); }
+.text-cyan { color: var(--accent-cyan); }
+.text-purple { color: var(--accent-purple); }
+.text-amber { color: var(--color-mod); }
+
+.perf-stat-caption {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.perf-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .perf-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.perf-sub-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.perf-sub-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perf-sub-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.perf-sub-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.feature-importance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 6px;
+}
+
+.fi-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fi-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+}
+
+.fi-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.fi-rank {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.fi-value {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.fi-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #090e17;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fi-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+  border-radius: 3px;
+}
+
+.split-timeline-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.timeline-segment {
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid;
+}
+
+.segment-train {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.25);
+  color: var(--accent-cyan);
+}
+
+.segment-val {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: var(--accent-purple);
+}
+
+.segment-test {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: var(--color-low);
+}
+
+.segment-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.segment-count {
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+}
+
+.segment-desc {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.architecture-specs-box {
+  background: #090e17;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-top: 4px;
+}
+
+.specs-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 0.76rem;
+}
+
+.spec-name {
+  color: var(--text-secondary);
+}
+
+.spec-val {
+  color: var(--text-white);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.validation-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.note-icon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Prediction History Component
+   ========================================================================== */
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.history-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.history-icon {
+  color: var(--accent-cyan);
+}
+
+.history-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.export-csv-btn, .clear-history-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: #142036;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.export-csv-btn:hover, .clear-history-btn:hover {
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.history-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.filter-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: #0f172a;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.history-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.18s ease;
+}
+
+.history-item:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.history-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history-mode-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mode-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.tag-live {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-low);
+}
+
+.tag-scenario {
+  background: rgba(168, 85, 247, 0.12);
+  color: var(--accent-purple);
+}
+
+.history-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.load-scenario-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--accent-cyan);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.load-scenario-btn:hover {
+  text-decoration: underline;
+}
+
+.history-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-volume-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history-volume-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+}
+
+.history-volume-unit {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-left: 4px;
+}
+
+.congestion-badge-sm {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.history-bar-container {
+  width: 100%;
+  height: 4px;
+  background: #090e17;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.history-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.bar-low { background: var(--color-low); }
+.bar-mod { background: var(--color-mod); }
+.bar-high { background: var(--color-high); }
+
+.history-params-summary {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.empty-history-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Model Info Modal
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 680px;
+  background: #0f172a;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.modal-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.benchmark-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: #090e17;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 1.45rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+}
+
+.stat-sub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.modal-split-box, .modal-threshold-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.modal-text {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.modal-split-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.split-stat-item {
+  background: #090e17;
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.split-stat-title {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.split-stat-val {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.threshold-pills-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.threshold-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  border: 1px solid;
+}
+
+.pill-low { background: var(--color-low-bg); border-color: var(--color-low-border); color: var(--color-low); }
+.pill-mod { background: var(--color-mod-bg); border-color: var(--color-mod-border); color: var(--color-mod); }
+.pill-high { background: var(--color-high-bg); border-color: var(--color-high-border); color: var(--color-high); }
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.modal-footer-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+
+/* ==========================================================================
+   Footer Component
+   ========================================================================== */
+.footer-container {
+  border-top: 1px solid var(--border-card);
+  background: rgba(11, 18, 32, 0.85);
+  padding: 16px 28px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.footer-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo {
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: 0.03em;
+}
+
+.footer-sep {
+  color: var(--text-dim);
+}
+
+/* Spinners */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style></head>
+  <body>
+    <div id="root"><div class="app-layout"><div class="toast-container" aria-live="polite"></div><header class="header-container"><div class="header-content"><div class="brand-section"><div class="brand-emblem-glow"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radio brand-emblem-icon" aria-hidden="true"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"></path><path d="M19.075 4.933a10 10 0 0 1 0 14.134"></path><path d="M4.925 19.067a10 10 0 0 1 0-14.134"></path><path d="M7.753 16.239a6 6 0 0 1 0-8.478"></path><circle cx="12" cy="12" r="2"></circle></svg></div><div><div class="brand-title-row"><h1 class="brand-title">TRAFFIC INTELLIGENCE</h1><span class="brand-badge-corridor">I-94 METRO CORRIDOR</span></div><p class="brand-subtitle">Smart City Congestion Forecasting • Standalone XGBoost Engine</p></div></div><div class="header-clock-hud"><div class="hud-clock-row"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock clock-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span class="clock-time">13:41:46</span><span class="clock-tz">LOCAL</span></div><span class="clock-date">Fri, Sep 25, 2026</span></div><div class="header-actions"><nav class="header-nav-pills"><button type="button" class="nav-pill-btn active-nav"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles lucide-stars" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg><span>Predict</span></button><button type="button" class="nav-pill-btn "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical lucide-sliders" aria-hidden="true"><path d="M10 8h4"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M17 16h4"></path><path d="M19 12V3"></path><path d="M19 21v-5"></path><path d="M3 14h4"></path><path d="M5 10V3"></path><path d="M5 21v-7"></path></svg><span>What-If</span></button><button type="button" class="nav-pill-btn "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column lucide-bar-chart-3" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span>Analytics</span></button><button type="button" class="nav-pill-btn "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu" aria-hidden="true"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg><span>Model</span></button><button type="button" class="nav-pill-btn "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-clock lucide-history" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg><span>History (2)</span></button></nav><button type="button" class="model-info-btn" title="Inspect Model Architecture &amp; Metrics"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-cyan-400" aria-hidden="true"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg><span>XGBoost • R² 0.95</span></button><div class="status-pill status-healthy" title="Client-Side XGBoost Engine is compiled and active"><span class="status-live-dot"></span><span>XGBoost Engine Ready</span></div></div></div></header><main class="main-content"><section class="section-hero"><div class="hero-network-card"><div class="network-header"><div class="network-title-group"><div class="pulsing-radar-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radio radar-icon-pulse" aria-hidden="true"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"></path><path d="M19.075 4.933a10 10 0 0 1 0 14.134"></path><path d="M4.925 19.067a10 10 0 0 1 0-14.134"></path><path d="M7.753 16.239a6 6 0 0 1 0-8.478"></path><circle cx="12" cy="12" r="2"></circle></svg></div><div><h2 class="network-title">I-94 METROPOLITAN ARTERIAL GRID</h2><p class="network-subtitle">Live Sensor Telemetry • Minneapolis ↔ St. Paul Interstate Corridor</p></div></div><div class="network-telemetry-pill"><span class="telemetry-live-dot"></span><span class="telemetry-live-text">CORRIDOR STATUS: HEAVY SATURATION</span></div></div><div class="network-svg-viewport"><svg viewBox="0 0 900 240" class="network-canvas" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="corridorGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00f2fe" stop-opacity="0.8"></stop><stop offset="50%" stop-color="#818cf8" stop-opacity="0.9"></stop><stop offset="100%" stop-color="#38bdf8" stop-opacity="0.8"></stop></linearGradient><filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.5" result="blur"></feGaussianBlur><feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite></filter><pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"></path></pattern></defs><rect width="900" height="240" fill="url(#gridPattern)"></rect><path d="M 50 60 Q 200 40 320 120 T 600 120 T 850 60" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="2" stroke-dasharray="4 6"></path><path d="M 50 180 Q 220 200 320 120 T 600 120 T 850 180" fill="none" stroke="rgba(129, 140, 248, 0.15)" stroke-width="2" stroke-dasharray="4 6"></path><path d="M 50 120 C 220 120, 280 80, 450 80 C 620 80, 680 120, 850 120" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="8" stroke-linecap="round"></path><path d="M 50 120 C 220 120, 280 80, 450 80 C 620 80, 680 120, 850 120" fill="none" stroke="url(#corridorGrad)" stroke-width="4" stroke-linecap="round" filter="url(#neonGlow)"></path><path d="M 50 136 C 220 136, 280 96, 450 96 C 620 96, 680 136, 850 136" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="6" stroke-linecap="round"></path><path d="M 50 136 C 220 136, 280 96, 450 96 C 620 96, 680 136, 850 136" fill="none" stroke="rgba(0, 242, 254, 0.4)" stroke-width="2" stroke-dasharray="8 12" stroke-linecap="round"></path><circle r="4" fill="#00f2fe" filter="url(#neonGlow)" cx="680" cy="95" opacity="undefined"></circle><circle r="4" fill="#38bdf8" filter="url(#neonGlow)" cx="266" cy="100" opacity="undefined"></circle><circle r="4" fill="#ef4444" filter="url(#neonGlow)" cx="460.2222222222222" cy="96.88888888888889" opacity="undefined"></circle><g class="sensor-node-group"><circle cx="120" cy="120" r="14" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" opacity="0.6"><animate attributeName="r" values="8;20;8" dur="2.5s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" repeatCount="indefinite"></animate></circle><circle cx="120" cy="120" r="5" fill="#38bdf8" filter="url(#neonGlow)"></circle><rect x="65" y="134" width="110" height="24" rx="6" fill="rgba(11, 15, 25, 0.85)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"></rect><text x="120" y="146" text-anchor="middle" fill="#f1f5f9" font-size="9" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Downtown Mpls (W)</text><text x="120" y="155" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="500" font-family="monospace">2,940 v/h</text></g><g class="sensor-node-group"><circle cx="300" cy="92" r="14" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.6"><animate attributeName="r" values="8;20;8" dur="2.9s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.8;0;0.8" dur="2.9s" repeatCount="indefinite"></animate></circle><circle cx="300" cy="92" r="5" fill="#ef4444" filter="url(#neonGlow)"></circle><rect x="245" y="56" width="110" height="24" rx="6" fill="rgba(11, 15, 25, 0.85)" stroke="#ef4444" stroke-width="1"></rect><text x="300" y="68" text-anchor="middle" fill="#f1f5f9" font-size="9" font-weight="600" font-family="system-ui, -apple-system, sans-serif">I-35W Interchange</text><text x="300" y="78" text-anchor="middle" fill="#ef4444" font-size="8" font-weight="500" font-family="monospace">4891 v/h</text></g><g class="sensor-node-group"><circle cx="450" cy="80" r="14" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" opacity="0.6"><animate attributeName="r" values="8;20;8" dur="3.3s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.8;0;0.8" dur="3.3s" repeatCount="indefinite"></animate></circle><circle cx="450" cy="80" r="5" fill="#38bdf8" filter="url(#neonGlow)"></circle><rect x="395" y="44" width="110" height="24" rx="6" fill="rgba(11, 15, 25, 0.85)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"></rect><text x="450" y="56" text-anchor="middle" fill="#f1f5f9" font-size="9" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Snelling Ave (Midway)</text><text x="450" y="66" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="500" font-family="monospace">3,810 v/h</text></g><g class="sensor-node-group"><circle cx="600" cy="92" r="14" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" opacity="0.6"><animate attributeName="r" values="8;20;8" dur="3.7s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.8;0;0.8" dur="3.7s" repeatCount="indefinite"></animate></circle><circle cx="600" cy="92" r="5" fill="#38bdf8" filter="url(#neonGlow)"></circle><rect x="545" y="56" width="110" height="24" rx="6" fill="rgba(11, 15, 25, 0.85)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"></rect><text x="600" y="68" text-anchor="middle" fill="#f1f5f9" font-size="9" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Lexington Pkwy</text><text x="600" y="78" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="500" font-family="monospace">3,150 v/h</text></g><g class="sensor-node-group"><circle cx="780" cy="120" r="14" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" opacity="0.6"><animate attributeName="r" values="8;20;8" dur="4.1s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.8;0;0.8" dur="4.1s" repeatCount="indefinite"></animate></circle><circle cx="780" cy="120" r="5" fill="#38bdf8" filter="url(#neonGlow)"></circle><rect x="725" y="134" width="110" height="24" rx="6" fill="rgba(11, 15, 25, 0.85)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"></rect><text x="780" y="146" text-anchor="middle" fill="#f1f5f9" font-size="9" font-weight="600" font-family="system-ui, -apple-system, sans-serif">St. Paul Downtown (E)</text><text x="780" y="155" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="500" font-family="monospace">2,420 v/h</text></g></svg></div><div class="network-stats-strip"><div class="stat-telemetry-box"><div class="telemetry-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radio telemetry-mini-icon" aria-hidden="true"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"></path><path d="M19.075 4.933a10 10 0 0 1 0 14.134"></path><path d="M4.925 19.067a10 10 0 0 1 0-14.134"></path><path d="M7.753 16.239a6 6 0 0 1 0-8.478"></path><circle cx="12" cy="12" r="2"></circle></svg> SENSORS ONLINE</div><div class="telemetry-val">64 / 64 SENSORS</div></div><div class="stat-telemetry-box"><div class="telemetry-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap telemetry-mini-icon" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"></path></svg> ESTIMATED PEAK CAPACITY</div><div class="telemetry-val">7,500 VEH / HR</div></div><div class="stat-telemetry-box"><div class="telemetry-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity telemetry-mini-icon" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg> AI INFERENCE PING</div><div class="telemetry-val">&lt; 18 MS (FASTAPI)</div></div><div class="stat-telemetry-box"><div class="telemetry-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield telemetry-mini-icon" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg> MODEL CONFIDENCE</div><div class="telemetry-val">94.7% R² (XGBOOST)</div></div></div></div></section><section id="section-deck" class="command-deck-section"><div class="dashboard-grid"><div class="dashboard-column"><div class="card form-card"><div class="mode-tabs-container"><button type="button" class="mode-tab active-tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles lucide-stars" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg><span>Live Prediction Mode</span></button><button type="button" class="mode-tab "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical lucide-sliders" aria-hidden="true"><path d="M10 8h4"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M17 16h4"></path><path d="M19 12V3"></path><path d="M19 21v-5"></path><path d="M3 14h4"></path><path d="M5 10V3"></path><path d="M5 21v-7"></path></svg><span>What-If / Scenario Mode</span></button></div><div class="card-header"><h2 class="card-title">Live Conditions &amp; Timing</h2><p class="card-description">Automatically detects browser time and queries real-time weather at your location for immediate predictions.</p></div><div class="live-controls-panel"><div class="live-panel-top"><div class="location-indicator"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin loc-icon" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Location: <strong>Minneapolis, US</strong></span></div><div class="live-actions"><button type="button" class="location-btn" title="Detect browser location and sync real-time weather"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Use My Location</span></button><button type="button" class="refresh-weather-btn" title="Refresh latest weather from Open-Meteo"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg><span>Refresh Weather</span></button></div></div><div class="weather-sync-banner"><div class="sync-banner-left"><span class="badge-synced"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check lucide-check-circle-2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg><span>Live Weather Synced (Open-Meteo)</span></span><span class="weather-summary-text">14°C, Clouds (few clouds), 0mm rain</span></div></div></div><form class="prediction-form"><div class="form-grid"><div class="form-group full-width"><div class="label-with-toggle"><label class="form-label" for="date_time"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg><span>Date &amp; Time (Observation Timing)</span></label><div class="time-badge-group"><span class="time-pill pill-auto"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span>Auto-detected (Browser Local)</span></span></div></div><input id="date_time" class="form-input" required="" type="datetime-local" value="2026-09-25T13:41"><span class="input-hint">Automatically decomposes into diurnal commute cycles, weekday/weekend indicators, and cyclical periodic features.</span></div><div class="form-group"><div class="label-with-toggle"><label class="form-label" for="temp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thermometer" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg><span>Temperature</span></label><div class="unit-toggle"><button type="button" class="toggle-btn active">°C</button><button type="button" class="toggle-btn ">K</button></div></div><input id="temp" step="0.1" class="form-input" required="" type="number" value="14"><span class="input-hint">Normal range: -25°C to 35°C (converted to 287.1 K)</span></div><div class="form-group"><label class="form-label" for="clouds_all"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg><span>Cloud Coverage: 34%</span></label><input id="clouds_all" min="0" max="100" class="form-range" type="range" value="34"><div class="range-markers"><span>0% (Clear)</span><span>50%</span><span>100% (Overcast)</span></div></div><div class="form-group"><label class="form-label" for="rain_1h"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-rain" aria-hidden="true"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M16 14v6"></path><path d="M8 14v6"></path><path d="M12 16v6"></path></svg><span>Rainfall Past Hour (mm)</span></label><input id="rain_1h" min="0" max="100" step="0.1" class="form-input" type="number" value="0"><span class="input-hint">0 = dry, 1–5 = light, 5–15 = moderate, &gt;15 = heavy</span></div><div class="form-group"><label class="form-label" for="snow_1h"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-snowflake" aria-hidden="true"><path d="m10 20-1.25-2.5L6 18"></path><path d="M10 4 8.75 6.5 6 6"></path><path d="m14 20 1.25-2.5L18 18"></path><path d="m14 4 1.25 2.5L18 6"></path><path d="m17 21-3-6h-4"></path><path d="m17 3-3 6 1.5 3"></path><path d="M2 12h6.5L10 9"></path><path d="m20 10-1.5 2 1.5 2"></path><path d="M22 12h-6.5L14 15"></path><path d="m4 10 1.5 2L4 14"></path><path d="m7 21 3-6-1.5-3"></path><path d="m7 3 3 6h4"></path></svg><span>Snowfall Past Hour (mm)</span></label><input id="snow_1h" min="0" max="50" step="0.05" class="form-input" type="number" value="0"><span class="input-hint">0 = none, 0.1–0.5 = flurries/light snow</span></div><div class="form-group"><label class="form-label" for="weather_main"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><span>Primary Weather</span></label><select id="weather_main" class="form-select"><option value="Clear">Clear</option><option value="Clouds">Clouds</option><option value="Rain">Rain</option><option value="Snow">Snow</option><option value="Mist">Mist</option><option value="Drizzle">Drizzle</option><option value="Haze">Haze</option><option value="Thunderstorm">Thunderstorm</option><option value="Fog">Fog</option><option value="Smoke">Smoke</option><option value="Squall">Squall</option></select></div><div class="form-group"><label class="form-label" for="weather_description"><span>Detailed Weather Description</span></label><select id="weather_description" class="form-select"><option value="scattered clouds">scattered clouds</option><option value="broken clouds">broken clouds</option><option value="overcast clouds">overcast clouds</option><option value="few clouds">few clouds</option></select></div><div class="form-group full-width"><label class="form-label" for="holiday"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg><span>Holiday Status</span></label><select id="holiday" class="form-select"><option value="None">None (Regular Working / Weekend Day)</option><option value="Columbus Day">Columbus Day</option><option value="Veterans Day">Veterans Day</option><option value="Thanksgiving Day">Thanksgiving Day</option><option value="Christmas Day">Christmas Day</option><option value="New Years Day">New Years Day</option><option value="Washingtons Birthday">Washingtons Birthday</option><option value="Memorial Day">Memorial Day</option><option value="Independence Day">Independence Day</option><option value="State Fair">State Fair</option><option value="Labor Day">Labor Day</option><option value="Martin Luther King Jr Day">Martin Luther King Jr Day</option></select><span class="input-hint">Holidays drastically reduce interstate commuter volumes during normal peak hours.</span></div></div><button type="submit" class="submit-btn "><span>Predict Current Traffic Volume</span></button></form></div></div><div class="dashboard-column results-column"><div class="card result-card card-border-high" style="opacity: 1; transform: none;"><div class="result-header"><div class="result-tag-group"><div class="result-tag"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-cyan-400" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg><span>AI INFERENCE OUTPUT</span></div><span class="mode-pill pill-live">🟢 Live Synchronized</span></div><div class="result-actions-top"><button type="button" class="copy-summary-btn" title="Copy Report to Clipboard"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg><span>Share</span></button><div class="model-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check text-emerald-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>XGBoost Regressor</span></div></div></div><div class="result-main-grid"><div class="result-gauge-col"><div class="traffic-gauge-container"><div class="gauge-relative-wrapper"><svg width="260" height="260" viewBox="0 0 260 260" class="gauge-svg"><defs><linearGradient id="gaugeGradient" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#10b981"></stop><stop offset="40%" stop-color="#f59e0b"></stop><stop offset="100%" stop-color="#ef4444"></stop></linearGradient><filter id="gaugeGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.5" result="blur"></feGaussianBlur><feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite></filter></defs><circle cx="130" cy="130" r="116" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="14" stroke-dasharray="546.637121724624 728.849495632832" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(135 130 130)"></circle><circle cx="130" cy="130" r="116" fill="none" stroke="url(#gaugeGradient)" stroke-width="14" stroke-dasharray="546.637121724624 728.849495632832" stroke-linecap="round" transform="rotate(135 130 130)" filter="url(#gaugeGlow)" stroke-dashoffset="190.17141040051848"></circle><line x1="185.9465013104162" y1="42.330227608806936" x2="193.477761102203" y2="30.528527479223257" stroke="#10b981" stroke-width="2.5"></line><line x1="220.9780439706791" y1="180.38844624781737" x2="233.22508835134744" y2="187.17150631963895" stroke="#f59e0b" stroke-width="2.5"></line><g class="gauge-center-text"><g style="transform: rotate(41.0688deg); transform-origin: 130px 130px 0px; transform-box: fill-box;"><line x1="130" y1="130" x2="228" y2="130" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round" filter="url(#gaugeGlow)"></line><circle cx="130" cy="130" r="7" fill="#ef4444" stroke="#0b0f19" stroke-width="3"></circle></g></g></svg><div class="gauge-digital-readout"><span class="gauge-readout-percent">65%</span><span class="gauge-readout-sub">CAPACITY</span></div></div><div class="gauge-threshold-legend"><div class="thresh-chip chip-low"><span class="thresh-dot dot-low"></span><span>&lt;2.1k Low</span></div><div class="thresh-chip chip-mod"><span class="thresh-dot dot-mod"></span><span>2.1k-4.5k Mod</span></div><div class="thresh-chip chip-high"><span class="thresh-dot dot-high"></span><span>&gt;4.5k High</span></div></div><div class="gauge-los-badge" style="border-color: rgb(239, 68, 68); background-color: rgba(239, 68, 68, 0.12);"><div class="los-code" style="color: rgb(239, 68, 68);">LOS E</div><div class="los-details"><span class="los-title">At Capacity</span><span class="los-metric">4,890.8 / 7,500 veh/hr</span></div></div></div></div><div class="result-volume-col"><div class="volume-hero-section"><div class="volume-label-wrapper"><span class="volume-eyebrow">ESTIMATED TRAFFIC VOLUME</span></div><div class="volume-display"><span class="volume-number">2,713</span><span class="volume-unit">VEHICLES / HOUR</span></div><div class="congestion-badge badge-high"><span class="badge-dot"></span><span class="badge-text">HIGH CONGESTION</span></div></div><p class="congestion-description">Rush-hour capacity constraint, significant delays</p><div class="commute-telemetry-row"><div class="telemetry-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gauge text-cyan-400" aria-hidden="true"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg><span>Est. Speed: <strong>~37 mph</strong></span></div><div class="telemetry-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer text-amber-400" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg><span>Delay Buffer: <strong>+25 min</strong></span></div></div></div></div><div class="recommendation-box rec-high"><div class="rec-header"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb rec-icon" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg><h4 class="rec-title">Severe Bottleneck Saturation — Heavy Congestion Alert</h4><span class="rec-tag">🛑 PEAK GRIDLOCK (DIVERSIFY ROUTE)</span></div><p class="rec-text">Peak congestion alert. Heavy bumper-to-bumper density. Consider alternative routes or delaying trip.</p></div><div class="features-breakdown"><div class="breakdown-header"><h4 class="breakdown-title">Engineered Feature Inputs (Verified Pipeline)</h4><span class="breakdown-sub">20 Invariant ML Features</span></div><div class="features-grid"><div class="feature-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock feature-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><div><span class="feature-label">Hour &amp; Rush Window</span><span class="feature-value">13:00 <span class="tag-offpeak">OFF-PEAK</span></span></div></div><div class="feature-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar feature-icon" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg><div><span class="feature-label">Day of Week</span><span class="feature-value">Friday <span class="tag-weekday">WEEKDAY</span></span></div></div><div class="feature-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-sun feature-icon" aria-hidden="true"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path></svg><div><span class="feature-label">Atmospheric State</span><span class="feature-value">Clear • 15°C (288.15K)</span></div></div><div class="feature-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check feature-icon" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><div><span class="feature-label">Holiday Classification</span><span class="feature-value">Non-Holiday Workday</span></div></div></div></div></div></div></div></section><section id="section-simulator" class="simulator-section"><div class="card simulator-card"><div class="simulator-header"><div class="simulator-title-group"><div class="simulator-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical lucide-sliders text-cyan-400" aria-hidden="true"><path d="M10 8h4"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M17 16h4"></path><path d="M19 12V3"></path><path d="M19 21v-5"></path><path d="M3 14h4"></path><path d="M5 10V3"></path><path d="M5 21v-7"></path></svg></div><div><h3 class="simulator-title">WHAT-IF SCENARIO STUDIO</h3><p class="simulator-subtitle">Side-by-side perturbation analysis powered by the client-side XGBoost engine</p></div></div><button type="button" class="simulator-reset-btn" title="Reset back to baseline parameters"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg><span>Reset to Baseline</span></button></div><div class="stress-actions-bar"><span class="stress-label"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap text-amber-400" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"></path></svg> Quick Presets:</span><button type="button" class="stress-btn"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-snow text-blue-300" aria-hidden="true"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M8 15h.01"></path><path d="M8 19h.01"></path><path d="M12 17h.01"></path><path d="M12 21h.01"></path><path d="M16 15h.01"></path><path d="M16 19h.01"></path></svg> Blizzard Surge (-8°C, 5.5mm)</button><button type="button" class="stress-btn"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-rain text-cyan-400" aria-hidden="true"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M16 14v6"></path><path d="M8 14v6"></path><path d="M12 16v6"></path></svg> Heavy Downpour (16mm Rain)</button><button type="button" class="stress-btn"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock text-rose-400" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Evening Rush Peak (17:30)</button><button type="button" class="stress-btn"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun text-emerald-400" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg> Off-Peak Night (02:00)</button><button type="button" class="stress-btn"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock text-purple-400" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Saturday Midday (14:00)</button></div><div class="comparison-matrix-grid"><div class="matrix-column matrix-baseline"><div class="matrix-col-header"><span class="matrix-col-badge badge-base">CURRENT BASELINE</span><span class="matrix-col-time">2026-09-25 13:41</span></div><div class="matrix-stat-display"><span class="matrix-num">4,891</span><span class="matrix-unit">VEH / HR</span></div><div class="matrix-level-pill level-high">HIGH CONGESTION</div><div class="matrix-param-list"><div class="matrix-param"><span>Weather:</span><strong>Clouds</strong></div><div class="matrix-param"><span>Temperature:</span><strong>14°C</strong></div><div class="matrix-param"><span>Precipitation:</span><strong>  0mm (Dry)</strong></div><div class="matrix-param"><span>Holiday:</span><strong>None</strong></div></div></div><div class="matrix-delta-connector"><div class="delta-badge delta-neutral"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg><span class="delta-caption">Click a preset above to simulate</span></div></div><div class="matrix-column matrix-simulated"><div class="matrix-col-header"><span class="matrix-col-badge badge-sim">MODIFIED SCENARIO</span><span class="matrix-col-time">2026-09-25 13:41</span></div><div class="matrix-unsimulated-state"><p>Select any preset above or tweak scenario parameters to generate comparative inference.</p></div></div></div></div></section><section id="section-analytics" class="analytics-section"><div class="card analytics-card"><div class="analytics-header"><div class="analytics-title-group"><div class="analytics-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column lucide-bar-chart-3 text-cyan-400" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></div><div><h3 class="analytics-title">CORRIDOR TRAFFIC PATTERNS &amp; ANALYTICS</h3><p class="analytics-subtitle">Empirical historical distributions across 48,187 Interstate 94 observations</p></div></div><div class="analytics-tabs"><button type="button" class="analytics-tab active"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span>24h Diurnal Curve</span></button><button type="button" class="analytics-tab "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg><span>Day of Week</span></button><button type="button" class="analytics-tab "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-sun" aria-hidden="true"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path></svg><span>Monthly Seasonality</span></button><button type="button" class="analytics-tab "><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg><span>Model Fit (R² 0.95)</span></button></div></div><div class="analytics-chart-wrapper"><div class="chart-canvas-container"><canvas role="img" height="320" width="610" style="box-sizing: border-box; display: block; height: 320px; width: 610px;"></canvas></div></div><div class="analytics-footer-summary"><span>💡 <strong>Diurnal Insight:</strong> Morning commute peaks at 07:00–08:00 AM (~5,750 veh/hr) and evening peak surges at 16:00–17:00 (~5,700 veh/hr). Weekend traffic rises gradually, peaking at 14:00.</span></div></div></section><section id="section-telemetry" class="telemetry-section"><div class="card performance-card"><div class="performance-header"><div class="performance-title-group"><div class="perf-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-cyan-400" aria-hidden="true"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg></div><div><div class="perf-badge-row"><h3 class="performance-title">MODEL ARCHITECTURE &amp; EVALUATION</h3><span class="badge-model-tag">PRODUCTION CHAMPION</span></div><p class="performance-subtitle">Single-model deployment: <strong>XGBoost Regressor</strong> evaluated on 7,229 unseen chronological test observations.</p></div></div><div class="perf-chip-engine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check text-emerald-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Generalization Verified • No Data Leakage</span></div></div><div class="perf-stats-grid"><div class="perf-stat-box"><span class="perf-stat-label">HELD-OUT TEST R²</span><span class="perf-stat-number text-emerald">0.95</span><span class="perf-stat-caption">95% of traffic volume variance is explained by the model on held-out test data</span></div><div class="perf-stat-box"><span class="perf-stat-label">MEAN ABSOLUTE ERROR (MAE)</span><span class="perf-stat-number text-cyan">282.44</span><span class="perf-stat-caption">Average prediction deviation across all 7,229 test hours (veh/hr)</span></div><div class="perf-stat-box"><span class="perf-stat-label">ROOT MEAN SQUARED ERROR (RMSE)</span><span class="perf-stat-number text-purple">458.60</span><span class="perf-stat-caption">Rigorous penalty for large tail prediction errors (veh/hr)</span></div><div class="perf-stat-box"><span class="perf-stat-label">CORPUS OBSERVATIONS</span><span class="perf-stat-number text-amber">48,187</span><span class="perf-stat-caption">Actual Interstate 94 metropolitan traffic &amp; weather records</span></div></div><div class="perf-details-grid"><div class="perf-sub-card"><div class="perf-sub-header"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-cyan-400" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg><h4 class="perf-sub-title">Top Predictive Drivers (XGBoost Feature Weights)</h4></div><p class="perf-sub-desc">Relative contribution of engineered features in reducing regression split impurity across 200 trees:</p><div class="feature-importance-list"><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#1</span> Hour of Day (Cos Cyclical)</span><span class="fi-value">51.8%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 100%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#2</span> Weekend Travel Flag (Sat/Sun)</span><span class="fi-value">20.3%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 39%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#3</span> Hour of Day (Linear)</span><span class="fi-value">12.0%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 23%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#4</span> Day of Week (Linear)</span><span class="fi-value">4.0%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 8%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#5</span> Peak Rush-Hour Flag (7-9 AM, 4-6 PM)</span><span class="fi-value">3.6%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 7%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#6</span> Hour of Day (Sin Cyclical)</span><span class="fi-value">2.5%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 5%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#7</span> cos_month</span><span class="fi-value">0.7%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 1%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#8</span> Day of Week (Cos Cyclical)</span><span class="fi-value">0.6%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 1%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#9</span> month</span><span class="fi-value">0.5%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 1%;"></div></div></div><div class="fi-row"><div class="fi-labels"><span class="fi-name"><span class="fi-rank">#10</span> Day of Week (Sin Cyclical)</span><span class="fi-value">0.4%</span></div><div class="fi-bar-track"><div class="fi-bar-fill" style="width: 1%;"></div></div></div></div></div><div class="perf-sub-card"><div class="perf-sub-header"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar text-purple-400" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg><h4 class="perf-sub-title">Strict Chronological Validation Strategy</h4></div><p class="perf-sub-desc">Standard random k-fold cross-validation causes lookahead leakage on time-series datasets. This project enforces a strict time-ordered partition:</p><div class="split-timeline-container"><div class="timeline-segment segment-train"><span class="segment-label">TRAIN (70%)</span><span class="segment-count">33,730 rows</span><span class="segment-desc">Historical baseline</span></div><div class="timeline-segment segment-val"><span class="segment-label">VAL (15%)</span><span class="segment-count">7,228 rows</span><span class="segment-desc">Hyperparameter tuning</span></div><div class="timeline-segment segment-test"><span class="segment-label">TEST (15%)</span><span class="segment-count">7,229 rows</span><span class="segment-desc">Unseen future horizon</span></div></div><div class="architecture-specs-box"><h5 class="specs-title">Trained Hyperparameters:</h5><div class="specs-grid"><div class="spec-item"><span class="spec-name">Ensemble Size:</span><span class="spec-val">200 Boosted Trees</span></div><div class="spec-item"><span class="spec-name">Max Tree Depth:</span><span class="spec-val">7 Levels</span></div><div class="spec-item"><span class="spec-name">Learning Rate:</span><span class="spec-val">η = 0.08</span></div><div class="spec-item"><span class="spec-name">Subsample Ratio:</span><span class="spec-val">0.80 per tree</span></div><div class="spec-item"><span class="spec-name">Feature Fraction:</span><span class="spec-val">0.80 colsample</span></div><div class="spec-item"><span class="spec-name">Loss Function:</span><span class="spec-val">Squared Error</span></div></div></div><div class="validation-note"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info note-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span><strong>Scientific Note:</strong> The reported R² of 0.95 reflects the coefficient of determination on strictly held-out future observations, representing 95% of traffic variance explained rather than simple classification accuracy.</span></div></div></div></div></section><section id="section-history" class="history-section"><div class="card history-card"><div class="history-header"><div class="history-title-group"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-clock lucide-history history-icon" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg><div><h3 class="card-title">MISSION LOGS &amp; PREDICTION HISTORY</h3><span class="card-description">2 records cached in client storage</span></div></div><div class="history-header-actions"><button type="button" class="export-csv-btn" title="Export session predictions as CSV spreadsheet"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg><span>Export CSV</span></button><button type="button" class="clear-history-btn" title="Clear all stored predictions"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash lucide-trash-2" aria-hidden="true"><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span>Clear</span></button></div></div><div class="history-filters"><span class="filter-label"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel lucide-filter" aria-hidden="true"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"></path></svg> Filter:</span><button type="button" class="filter-btn active">ALL</button><button type="button" class="filter-btn ">LOW</button><button type="button" class="filter-btn ">MODERATE</button><button type="button" class="filter-btn ">HIGH</button></div><div class="history-list"><div class="history-item"><div class="history-item-top"><div class="history-mode-timestamp"><span class="mode-tag tag-scenario">🔮 Scenario</span><span class="history-timestamp"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Invalid Date</span></div><button type="button" class="load-scenario-btn" title="Load these inputs into form"><span>Load Scenario</span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></button></div><div class="history-item-body"><div class="history-volume-section"><div class="history-volume-number">NaN<span class="history-volume-unit">veh/hr</span></div><span class="congestion-badge-sm badge-high"></span></div><div class="history-bar-container" title="NaN% of maximum corridor capacity"><div class="history-bar-fill bar-high"></div></div><div class="history-params-summary"><span>📅 </span><span>🌡️ °</span><span>🌤️ </span><span class="tag-holiday-sm">🎉 </span></div></div></div><div class="history-item"><div class="history-item-top"><div class="history-mode-timestamp"><span class="mode-tag tag-scenario">🔮 Scenario</span><span class="history-timestamp"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Invalid Date</span></div><button type="button" class="load-scenario-btn" title="Load these inputs into form"><span>Load Scenario</span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></button></div><div class="history-item-body"><div class="history-volume-section"><div class="history-volume-number">NaN<span class="history-volume-unit">veh/hr</span></div><span class="congestion-badge-sm badge-high"></span></div><div class="history-bar-container" title="NaN% of maximum corridor capacity"><div class="history-bar-fill bar-high"></div></div><div class="history-params-summary"><span>📅 </span><span>🌡️ °</span><span>🌤️ </span><span class="tag-holiday-sm">🎉 </span></div></div></div></div></div></section></main><footer class="footer-container"><div class="footer-content"><div class="footer-left"><span class="footer-logo">METRO TRAFFIC INTELLIGENCE</span><span class="footer-sep">•</span><span>Interstate 94 Corridor Congestion Forecasting Platform</span></div><div class="footer-right"><span>Client-Side XGBoost Regressor (R² = 0.95 • MAE = 282.44 veh/hr)</span><span class="footer-sep">•</span><span>48,187 Chronological Highway Observations</span></div></div></footer></div></div>
+    <script type="module" src="/src/main.jsx?t=1790323837801"></script>
+  
+
+</body></html>

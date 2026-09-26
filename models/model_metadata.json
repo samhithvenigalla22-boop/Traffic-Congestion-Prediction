@@ -1,0 +1,42 @@
+{
+    "model_name": "XGBoost Regressor",
+    "objective": "reg:squarederror",
+    "evaluation_metrics": {
+        "test": {
+            "r2": 0.9465548992156982,
+            "mae": 278.6021728515625,
+            "rmse": 458.6590270996094,
+            "variance_explained_note": "R\u00b2 indicates the proportion of variance in test traffic volume explained by the model."
+        }
+    },
+    "congestion_thresholds": {
+        "low_upper": 2154.0,
+        "moderate_upper": 4555.0,
+        "methodology": "Empirical Terciles of Traffic Volume Distribution"
+    },
+    "features": {
+        "numerical": [
+            "temp",
+            "rain_1h",
+            "snow_1h",
+            "clouds_all",
+            "hour",
+            "day_of_week",
+            "day",
+            "month",
+            "year",
+            "is_weekend",
+            "is_rush_hour",
+            "sin_hour",
+            "cos_hour",
+            "sin_month",
+            "cos_month",
+            "sin_dow",
+            "cos_dow"
+        ],
+        "categorical": [
+            "weather_main",
+            "holiday"
+        ]
+    }
+}

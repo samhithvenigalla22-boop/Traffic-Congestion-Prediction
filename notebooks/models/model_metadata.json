@@ -1,0 +1,55 @@
+{
+    "model_name": "XGBoost Regressor",
+    "selected_reason": "Lowest Test RMSE and MAE with highest generalization R\u00b2 score across chronological test partition.",
+    "target_variable": "traffic_volume",
+    "evaluation_metrics": {
+        "validation": {
+            "mae": 315.67095947265625,
+            "rmse": 471.0167541503906,
+            "r2": 0.9425588846206665
+        },
+        "test": {
+            "mae": 282.4416809082031,
+            "rmse": 458.59814453125,
+            "r2": 0.9465690851211548
+        }
+    },
+    "features": {
+        "numerical": [
+            "temp",
+            "rain_1h",
+            "snow_1h",
+            "clouds_all",
+            "hour",
+            "day_of_week",
+            "day",
+            "month",
+            "year",
+            "is_weekend",
+            "is_rush_hour",
+            "is_holiday",
+            "sin_hour",
+            "cos_hour",
+            "sin_month",
+            "cos_month",
+            "sin_dow",
+            "cos_dow"
+        ],
+        "categorical": [
+            "weather_main",
+            "holiday"
+        ],
+        "total_input_features": 20
+    },
+    "dataset_split": {
+        "train_samples": 33730,
+        "val_samples": 7228,
+        "test_samples": 7229,
+        "strategy": "Strict Chronological Split (70% Train / 15% Val / 15% Test)"
+    },
+    "congestion_thresholds": {
+        "low_upper": 2154.0,
+        "moderate_upper": 4555.0,
+        "methodology": "Empirical Terciles of Traffic Volume Distribution (33.3% and 66.7% quantiles)"
+    }
+}
